@@ -11,5 +11,14 @@
 To Preview this project run
 
 ```bash
+git clone https://github.com/fauzymadani/laravelCrud.git
+```
+
+install dependencie's
+```bash
+composer install
+```
+
+```bash
   php artisan serve
 ```
