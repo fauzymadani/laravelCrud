@@ -1,4 +1,5 @@
 # Laravel Crud
+[![Laravel](https://github.com/fauzymadani/laravelCrud/actions/workflows/laravel.yml/badge.svg)](https://github.com/fauzymadani/laravelCrud/actions/workflows/laravel.yml)
 
 
 
