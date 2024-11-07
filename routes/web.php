@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::resource('departemen', DepartemenController::class);
 
-Route::get('/login', [SessionController::class,'index']);
-Route::get('sesi', [SessionController::class,'index']);
-Route::post('/sesi/login', [SessionController::class,'login']);
-Route::get('/sesi/logout', [SessionController::class,'logout']);
+Route::get('/login',[SessionController::class,'index']);
+Route::get('sesi',[SessionController::class,'index']);
+Route::post('/sesi/login',[SessionController::class,'login']);
+Route::get('/sesi/logout',[SessionController::class,'logout']);
