@@ -25,6 +25,11 @@
     </li>
 
     <!-- Divider -->
+    <style>
+        .navbar-nav {
+            background: #03045e;
+        }
+    </style>
 
 
 </ul>

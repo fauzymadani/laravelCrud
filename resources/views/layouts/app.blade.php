@@ -20,6 +20,25 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <style>
+        .my-content {
+            margin: 20px
+        }
+
+        .my-content li {
+            margin: 10px 0;
+            padding-bottom: 5px;
+            border-bottom: 1px dotted #333;
+        }
+
+        .my-content li a {
+            color: #0077b6;
+            text-decoration: underline
+        }
+    </style>
+
+
+
 
 </head>
 
@@ -48,14 +67,26 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Sisfo pegawai romusha fauzy</h1>
+                        {{-- <button onclick="toggleDarkMode()" class="btn btn-secondary">Toggle Dark Mode</button> --}}
+
 
                     </div>
+                    
                     @yield('content')
                     <!-- Content Row -->
 
 
                 </div>
                 <!-- /.container-fluid -->
+                <div class="my-content">
+                    <div class="list">
+                        <h3>list of content</h3>
+                        <ul>
+                            <li><a href="https://github.com/fauzymadani">github</a></li>
+                            <li><a href="https://gitlab.com/fauzymadani">gitlab</a></li>
+                        </ul>
+                    </div>
+                </div>
 
             </div>
             <!-- End of Main Content -->
@@ -119,6 +150,19 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+
+    <script>
+        // Automatically apply dark mode if system preference is dark
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+        }
+    
+        // Toggle button for dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+    
 </body>
 
 </html>
