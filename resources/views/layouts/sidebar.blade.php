@@ -27,7 +27,7 @@
     <!-- Divider -->
     <style>
         .navbar-nav {
-            background: #03045e;
+            background: #2a2a2a;
         }
     </style>
 
