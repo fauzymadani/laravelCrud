@@ -23,3 +23,10 @@ composer install
 ```bash
   php artisan serve
 ```
+
+## Contributors
+<a href="https://github.com/fauzymadani/laravelCrud/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=fauzymadani/laravelCrud" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
