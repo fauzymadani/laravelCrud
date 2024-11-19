@@ -92,47 +92,57 @@ class KaryawanController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {
-        //
+{
+    $request->validate([
+        'nip' => 'required',
+        'nama_karyawan' => 'required',
+        'gaji_karyawan' => 'required',
+        'alamat' => 'required',
+        'jenis_kelamin' => 'required',
+    ],[
+        'nip.required' => 'Nip Wajib Diisi',
+        'nama_karyawan.required' => 'Nama karyawan Wajib Diisi',
+        'gaji_karyawan.required' => 'ini Wajib Diisi',
+        'alamat.required' => 'Wajib Diisi coy',
+        'jenis_kelamin.required' => 'wajib wajib Wajib Diisi gustiiii',
+    ]);
+
+    $data = [
+        'nip' => $request->nip,
+        'nama_karyawan' => $request->nama_karyawan,
+        'gaji_karyawan' => $request->gaji_karyawan,
+        'alamat' => $request->alamat,
+        'jenis_kelamin' => $request->jenis_kelamin,
+    ];
+
+    if ($request->hasFile('foto')) {
         $request->validate([
-            'nip' => 'required',
-            'nama_karyawan' => 'required',
-            'gaji_karyawan' => 'required',
-            'alamat' => 'required',
-            'jenis_kelamin' => 'required',
+            'foto' => 'mimes:jpeg,jpg,png,gif'
         ],[
-            'nip.required' => 'Nip Wajib Diisi',
-            'nama_karyawan.required' => 'Nama karyawan Wajib Diisi',
-            'gaji_karyawan.required' => 'ini Wajib Diisi',
-            'alamat.required' => 'Wajib Diisi coy',
-            'jenis_kelamin.required' => 'wajib wajib Wajib Diisi gustiiii',
+            'foto.mimes' => 'Foto Yang Diperbolehkan Sistem Berekstensi jpeg, png, gif, jpg.'
         ]);
 
-        $data = [
-            'nip' => $request->nip,
-            'nama_karyawan' => $request->nama_karyawan,
-            'gaji_karyawan' => $request->gaji_karyawan,
-            'alamat' => $request->alamat,
-            'jenis_kelamin' => $request->jenis_kelamin,
-        ];
-        if($request->hasFile('foto')) {
-            $request->validate([
-                'foto' => 'mimes:jpeg, jpg, png, gif'
-            ],[
-                'foto.mimes' => 'Foto Yang Diperbolehkan Sistem Berekstensi jpeg, png, gif, jpg.'
-            ]);
-            $foto_file = $request->file('foto');
-            $foto_ekstensi = $foto_file->extension();
-            $foto_nama = date('ymdhis'). "." .$foto_ekstensi;
-            $foto_file->move(public_path('foto'),$foto_nama);
+        $foto_file = $request->file('foto');
+        $foto_ekstensi = $foto_file->extension();
+        $foto_nama = date('ymdhis'). "." .$foto_ekstensi;
+        $foto_file->move(public_path('foto'), $foto_nama);
 
-            $data_foto = Karyawan::where('nip',$id)->first();
-            //hapus file
-            File::delete(public_path('foto').'/'.$data_foto->foto);
+        $data_foto = Karyawan::where('nip', $id)->first();
+
+        if ($data_foto && File::exists(public_path('foto') . '/' . $data_foto->foto)) {
+            // halo
+            File::delete(public_path('foto') . '/' . $data_foto->foto);
         }
-        Karyawan::where('nip',$id)->update($data);
-        return redirect('karyawan')->with('success', 'Karyawan Berhasi Di update');
+
+        // halig siah melong source code urang!!
+        $data['foto'] = $foto_nama;
     }
+
+    Karyawan::where('nip', $id)->update($data);
+
+    return redirect('karyawan')->with('success', 'Karyawan Berhasil Diupdate');
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -140,6 +150,10 @@ class KaryawanController extends Controller
     public function destroy($id)
     {
         //
+        $data = Karyawan::where('nip',$id)->first();
+
+        File::delete(public_path('foto').'/'.$data->foto);
+        
         Karyawan::where('nip',$id)->delete();
         return redirect('karyawan')->with('success', 'Karyawan Berhasi Di Hapus');
     }
