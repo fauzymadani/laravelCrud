@@ -1,0 +1,3 @@
+316b24d19ca8c7f8acce9452424e5ada23cb796c3431c36419402c1cec9cfe01  jquery.easing.compatibility.js
+b70e7fc0877517ee0bc941766499e94681cd5c9eba8eb2b720685fab82e12e36  jquery.easing.js
+1f7723b6b9bfced0deba108df48e3287888dd986f1ff2d5133bacc9807ac0349  jquery.easing.min.js
